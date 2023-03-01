@@ -513,6 +513,7 @@ public:
     bool can_see_invisible() const override;
     bool innate_sinv() const;
     bool visible_to(const actor *looker) const override;
+    bool safe_path_to(const actor *looker) const override;
     bool can_see(const actor& a) const override;
     undead_state_type undead_state(bool temp = true) const;
     bool nightvision() const override;

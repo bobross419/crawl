@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "actor.h"
+#include "beam.h"
 #include "beh-type.h"
 #include "enchant-type.h"
 #include "kill-method-type.h"
@@ -413,6 +414,7 @@ public:
     bool invisible() const override;
     bool can_see_invisible() const override;
     bool visible_to(const actor *looker) const override;
+    bool safe_path_to(const actor *looker) const override;
     bool near_foe() const;
     reach_type reach_range() const override;
     bool nightvision() const override;

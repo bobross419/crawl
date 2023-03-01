@@ -717,6 +717,8 @@ void throw_it(quiver::action &a)
             // Set values absurdly high to make sure the tracer will
             // complain if we're attempting to fire through allies.
             pbolt.damage = dice_def(1, 100);
+            dprf("XXX ");
+            printf("XXX ");
 
             // Init tracer variables.
             pbolt.foe_info.reset();

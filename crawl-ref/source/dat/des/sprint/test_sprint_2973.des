@@ -1,0 +1,33 @@
+
+NAME:   test_sprint_2973
+DESC:   TESTSPRINT_2973
+ORDER:  12
+TAGS:   sprint no_item_gen no_trap_gen no_pool_fixup no_rotate no_hmirror no_vmirror
+ORIENT: encompass
+MONS: kobold, goblin , gnoll att:friendly name_replace name:gnoll , orc att:friendly name_replace name:orc
+KMONS: B = human
+MARKER: E = lua:transp_loc("testentry")
+MARKER: F = lua:transp_dest_loc("testentry")
+
+
+MAP
+XXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XX{EXXXXX...w1w2w3wFw.w.wBX
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXX...w1w2w3w.w.w.w.X
+XXXXXXXXXXXXXXXXXXXXXXXXXXX
+ENDMAP

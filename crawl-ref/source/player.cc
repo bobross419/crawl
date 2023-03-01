@@ -21,6 +21,7 @@
 #include "areas.h"
 #include "art-enum.h"
 #include "attack.h"
+#include "beam.h"
 #include "bloodspatter.h"
 #include "branch.h"
 #include "chardump.h"
@@ -7171,6 +7172,18 @@ bool player::visible_to(const actor *looker) const
         || (!mon->has_ench(ENCH_BLIND) && !invis_to);
 }
 
+bool player::safe_path_to(const actor *looker) const
+{
+  bolt tracer;
+  tracer.target = you.pos();
+  fire_tracer(monster_at(looker->pos()), tracer);
+  if (!mons_should_fire(tracer)
+      || tracer.path_taken.back() != tracer.target)
+  {
+    return false;
+  }
+  return true;
+}
 /**
  * Is the player backlit?
  *

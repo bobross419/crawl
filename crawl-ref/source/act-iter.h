@@ -26,6 +26,7 @@ protected:
     int i;
 
     bool valid(const actor* a) const;
+    bool safe_path(const actor* a) const;
     void advance();
 };
 

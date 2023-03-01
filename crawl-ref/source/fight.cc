@@ -237,6 +237,9 @@ static bool _autoswitch_to_melee()
 static bool _can_shoot_with(const item_def *weapon)
 {
     // TOOD: dedup elsewhere.
+    printf("BBB ");
+    dprf("BBB ");
+
     return weapon
         && is_range_weapon(*weapon)
         && !you.attribute[ATTR_HELD]
@@ -245,6 +248,8 @@ static bool _can_shoot_with(const item_def *weapon)
 
 static bool _autofire_at(actor *defender)
 {
+    printf("CCC ");
+    dprf("CCC ");
     if (!_can_shoot_with(you.weapon()))
         return false;
     dist t;

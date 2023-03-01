@@ -15,6 +15,7 @@
 #include "art-enum.h"
 #include "attack.h"
 #include "attitude-change.h"
+#include "beam.h"
 #include "bloodspatter.h"
 #include "branch.h"
 #include "cloud.h"
@@ -4950,6 +4951,31 @@ bool monster::visible_to(const actor *looker) const
 
     const bool vis = seen_by_att || physically_vis;
     return vis && (this == looker || !submerged());
+}
+
+bool monster::safe_path_to(const actor *looker) const
+{
+  if ( this == looker ) // targeting self
+     return true;
+  //if ( this->pos() - looker.pos() )
+  bolt tracer;
+  tracer.target = this->pos();
+  tracer.damage = dice_def(1, 100);
+  if (you.pos() == looker->pos())
+  {
+    //dprf("III ");
+    //return true;
+    return player_tracer(ZAP_DEBUGGING_RAY, 100, tracer, 8); //DEBUG Hardcoded
+  }
+  else
+    fire_tracer(monster_at(looker->pos()), tracer);
+
+  if (!mons_should_fire(tracer)
+      || tracer.path_taken.back() != tracer.target)
+  {
+    return false;
+  }
+  return true;
 }
 
 bool monster::near_foe() const

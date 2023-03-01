@@ -1,6 +1,7 @@
 #include "AppHdr.h"
 
 #include "act-iter.h"
+#include "output.h"
 
 #include "env.h"
 #include "losglobal.h"
@@ -58,7 +59,18 @@ bool actor_near_iterator::valid(const actor* a) const
         return false;
     if (viewer && !a->visible_to(viewer))
         return false;
+
+    printf("DDD ");
+    if (true)
+        printf("EEE ");
+        return safe_path(a);
+
     return cell_see_cell(center, a->pos(), _los);
+}
+
+bool actor_near_iterator::safe_path(const actor* a) const
+{
+  return (viewer && a->safe_path_to(viewer));
 }
 
 void actor_near_iterator::advance()

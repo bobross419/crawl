@@ -3182,6 +3182,8 @@ static bool _find_square(coord_def &mfp, int direction,
         const int targ_x = you.pos().x + temp_xps - ctrx;
         const int targ_y = you.pos().y + temp_yps - ctry;
         const coord_def targ(targ_x, targ_y);
+        printf("GGG ");
+        dprf("GGG ");
 
         if (!crawl_view.in_viewport_g(targ))
             continue;
@@ -3191,6 +3193,12 @@ static bool _find_square(coord_def &mfp, int direction,
 
         if ((onlyVis || onlyHidden) && onlyVis != you.see_cell(targ))
             continue;
+
+        if (true && find_targ(targ) && monster_at(targ) && monster_at(targ)->safe_path_to(actor_at(you.pos())))
+        {
+            dprf("FFF ");
+            continue;
+        }
 
         if (find_targ(targ))
         {

@@ -164,6 +164,9 @@ public:
     // Can the actor actually see the target?
     virtual bool can_see(const actor &target) const;
 
+    // Does the actor have a path clear of friendlies?
+    virtual bool safe_path_to(const actor *looker) const = 0;
+
     // Visibility as required by messaging. In usual play:
     //   Does the player know what's happening to the actor?
     bool observable() const;

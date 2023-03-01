@@ -52,6 +52,7 @@
 #include "mutation.h"
 #include "nearby-danger.h"
 #include "options.h"
+#include "output.h"
 #include "player-stats.h"
 #include "potion.h"
 #include "prompt.h"
@@ -305,7 +306,9 @@ bool player_tracer(zap_type ztype, int power, bolt &pbolt, int range)
     if (range)
         pbolt.range = range;
 
+    dprf("JJJ ");
     pbolt.fire();
+    dprf("KKK ");
 
     if (range)
         pbolt.range = old_range;
@@ -795,7 +798,8 @@ void bolt::apply_beam_conducts()
 void bolt::choose_ray()
 {
     if ((!chose_ray || reflections > 0)
-        && !find_ray(source, target, ray, opc_solid_see)
+        //&& !find_ray(source, target, ray, opc_solid_see)
+        && !find_ray(source, target, ray, opc_no_actor)
         // If fire is blocked, at least try a visible path so the
         // error message is better.
         && !find_ray(source, target, ray, opc_default))
@@ -1208,6 +1212,8 @@ void bolt::do_fire()
         }
 
         const dungeon_feature_type feat = env.grid(pos());
+        // printf("ZZZ ");
+        // dprf("ZZZ ");
 
         if (in_bounds(target)
             // Starburst beams are essentially untargeted; some might even hit
@@ -1237,6 +1243,8 @@ void bolt::do_fire()
             // of the player manually targeting something whose line of fire
             // is blocked, even though its line of sight isn't blocked. Give
             // a warning about this fact.
+            printf("AAA ");
+            dprf("AAA ");
             string prompt = "Your line of fire to ";
             const monster* mon = monster_at(target);
 
@@ -2090,6 +2098,8 @@ int silver_damages_victim(actor* victim, int damage, string &dmg_msg)
 void fire_tracer(const monster* mons, bolt &pbolt, bool explode_only,
                  bool explosion_hole)
 {
+    printf("HHH ");
+    dprf("HHH ");
     // If this ASSERT triggers, your spell's setup code probably is doing
     // something bad when setup_mons_cast is called with check_validity=true.
     ASSERTM(crawl_state.game_started || crawl_state.test || crawl_state.script
